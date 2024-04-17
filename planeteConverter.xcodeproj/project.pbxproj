@@ -7,21 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B182245F2BCFEFB40001BDEF /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B182245E2BCFEFB40001BDEF /* Prefix.swift */; };
+		B18224622BCFF64E0001BDEF /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = B18224612BCFF64E0001BDEF /* LaunchAtLogin */; };
+		B1BB63772BCED63100309584 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB63762BCED63100309584 /* MainViewModel.swift */; };
+		B1BB637B2BCEF08400309584 /* SimpleNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB637A2BCEF08400309584 /* SimpleNotesView.swift */; };
+		B1BB637D2BCEF4A900309584 /* NoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB637C2BCEF4A900309584 /* NoteItem.swift */; };
 		B1C03C6B2BCE728D00FEB061 /* planeteConverterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C03C6A2BCE728D00FEB061 /* planeteConverterApp.swift */; };
 		B1C03C6D2BCE728D00FEB061 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C03C6C2BCE728D00FEB061 /* ContentView.swift */; };
-		B1C03C6F2BCE728D00FEB061 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C03C6E2BCE728D00FEB061 /* Item.swift */; };
 		B1C03C712BCE728E00FEB061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1C03C702BCE728E00FEB061 /* Assets.xcassets */; };
 		B1C03C742BCE728E00FEB061 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1C03C732BCE728E00FEB061 /* Preview Assets.xcassets */; };
+		B1C03C7C2BCE73F000FEB061 /* ConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C03C7B2BCE73F000FEB061 /* ConverterView.swift */; };
+		B1C03C7E2BCE756C00FEB061 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C03C7D2BCE756C00FEB061 /* MainContentView.swift */; };
+		B1C03C802BCE77D000FEB061 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C03C7F2BCE77D000FEB061 /* Units.swift */; };
+		B1C03C822BCE77E000FEB061 /* ConversionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C03C812BCE77E000FEB061 /* ConversionItem.swift */; };
+		B1D40EAF2BCFB5D1007ECE0E /* CenterModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D40EAE2BCFB5D1007ECE0E /* CenterModifier.swift */; };
+		B1D40EB42BCFBA56007ECE0E /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B1D40EB32BCFBA56007ECE0E /* LaTeXSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B182245E2BCFEFB40001BDEF /* Prefix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
+		B1BB63762BCED63100309584 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		B1BB637A2BCEF08400309584 /* SimpleNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNotesView.swift; sourceTree = "<group>"; };
+		B1BB637C2BCEF4A900309584 /* NoteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteItem.swift; sourceTree = "<group>"; };
 		B1C03C672BCE728D00FEB061 /* planeteConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = planeteConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1C03C6A2BCE728D00FEB061 /* planeteConverterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = planeteConverterApp.swift; sourceTree = "<group>"; };
 		B1C03C6C2BCE728D00FEB061 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B1C03C6E2BCE728D00FEB061 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B1C03C702BCE728E00FEB061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1C03C732BCE728E00FEB061 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B1C03C752BCE728E00FEB061 /* planeteConverter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = planeteConverter.entitlements; sourceTree = "<group>"; };
+		B1C03C7B2BCE73F000FEB061 /* ConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterView.swift; sourceTree = "<group>"; };
+		B1C03C7D2BCE756C00FEB061 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
+		B1C03C7F2BCE77D000FEB061 /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		B1C03C812BCE77E000FEB061 /* ConversionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionItem.swift; sourceTree = "<group>"; };
+		B1D40EAE2BCFB5D1007ECE0E /* CenterModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +47,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18224622BCFF64E0001BDEF /* LaunchAtLogin in Frameworks */,
+				B1D40EB42BCFBA56007ECE0E /* LaTeXSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,8 +75,15 @@
 			isa = PBXGroup;
 			children = (
 				B1C03C6A2BCE728D00FEB061 /* planeteConverterApp.swift */,
+				B1C03C7D2BCE756C00FEB061 /* MainContentView.swift */,
+				B1BB63762BCED63100309584 /* MainViewModel.swift */,
+				B1C03C7B2BCE73F000FEB061 /* ConverterView.swift */,
+				B1BB637A2BCEF08400309584 /* SimpleNotesView.swift */,
 				B1C03C6C2BCE728D00FEB061 /* ContentView.swift */,
-				B1C03C6E2BCE728D00FEB061 /* Item.swift */,
+				B1C03C7F2BCE77D000FEB061 /* Units.swift */,
+				B182245E2BCFEFB40001BDEF /* Prefix.swift */,
+				B1D40EB12BCFB663007ECE0E /* Modifiers */,
+				B1D40EB02BCFB5FD007ECE0E /* SwiftData */,
 				B1C03C702BCE728E00FEB061 /* Assets.xcassets */,
 				B1C03C752BCE728E00FEB061 /* planeteConverter.entitlements */,
 				B1C03C722BCE728E00FEB061 /* Preview Content */,
@@ -70,6 +97,23 @@
 				B1C03C732BCE728E00FEB061 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B1D40EB02BCFB5FD007ECE0E /* SwiftData */ = {
+			isa = PBXGroup;
+			children = (
+				B1C03C812BCE77E000FEB061 /* ConversionItem.swift */,
+				B1BB637C2BCEF4A900309584 /* NoteItem.swift */,
+			);
+			path = SwiftData;
+			sourceTree = "<group>";
+		};
+		B1D40EB12BCFB663007ECE0E /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				B1D40EAE2BCFB5D1007ECE0E /* CenterModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -88,6 +132,10 @@
 			dependencies = (
 			);
 			name = planeteConverter;
+			packageProductDependencies = (
+				B1D40EB32BCFBA56007ECE0E /* LaTeXSwiftUI */,
+				B18224612BCFF64E0001BDEF /* LaunchAtLogin */,
+			);
 			productName = planeteConverter;
 			productReference = B1C03C672BCE728D00FEB061 /* planeteConverter.app */;
 			productType = "com.apple.product-type.application";
@@ -116,6 +164,10 @@
 				Base,
 			);
 			mainGroup = B1C03C5E2BCE728D00FEB061;
+			packageReferences = (
+				B1D40EB22BCFBA56007ECE0E /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */,
+				B18224602BCFF64E0001BDEF /* XCRemoteSwiftPackageReference "LaunchAtLogin-modern" */,
+			);
 			productRefGroup = B1C03C682BCE728D00FEB061 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -143,8 +195,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1C03C6D2BCE728D00FEB061 /* ContentView.swift in Sources */,
-				B1C03C6F2BCE728D00FEB061 /* Item.swift in Sources */,
+				B1D40EAF2BCFB5D1007ECE0E /* CenterModifier.swift in Sources */,
+				B1C03C802BCE77D000FEB061 /* Units.swift in Sources */,
+				B1BB637B2BCEF08400309584 /* SimpleNotesView.swift in Sources */,
+				B1C03C7C2BCE73F000FEB061 /* ConverterView.swift in Sources */,
+				B1BB637D2BCEF4A900309584 /* NoteItem.swift in Sources */,
+				B1C03C822BCE77E000FEB061 /* ConversionItem.swift in Sources */,
 				B1C03C6B2BCE728D00FEB061 /* planeteConverterApp.swift in Sources */,
+				B1C03C7E2BCE756C00FEB061 /* MainContentView.swift in Sources */,
+				B182245F2BCFEFB40001BDEF /* Prefix.swift in Sources */,
+				B1BB63772BCED63100309584 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +343,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Planete Converter";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -311,6 +374,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Planete Converter";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -347,6 +413,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B18224602BCFF64E0001BDEF /* XCRemoteSwiftPackageReference "LaunchAtLogin-modern" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-modern";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+		B1D40EB22BCFBA56007ECE0E /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/colinc86/LaTeXSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B18224612BCFF64E0001BDEF /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B18224602BCFF64E0001BDEF /* XCRemoteSwiftPackageReference "LaunchAtLogin-modern" */;
+			productName = LaunchAtLogin;
+		};
+		B1D40EB32BCFBA56007ECE0E /* LaTeXSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1D40EB22BCFBA56007ECE0E /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */;
+			productName = LaTeXSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B1C03C5F2BCE728D00FEB061 /* Project object */;
 }
