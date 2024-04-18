@@ -1,5 +1,5 @@
 {
-  "originHash" : "7a5acb7b47159c2d793ba68f99110635b9302ceddfff2c9017ad5a941e913514",
+  "originHash" : "c6c334265afeba2586389fc81ec3b4f45233f210ef402ba56ae33e08027fcdf6",
   "pins" : [
     {
       "identity" : "latexswiftui",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "e23d6eab941da699ac4a60fb0e60f3ba5c937459",
         "version" : "3.4.0"
+      }
+    },
+    {
+      "identity" : "neumorphic",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/costachung/neumorphic",
+      "state" : {
+        "revision" : "03c6f7b3d27bfb28a082db2e9ffae45fbc69cb8b",
+        "version" : "2.0.6"
       }
     },
     {

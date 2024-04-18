@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import LaTeXSwiftUI
+import Neumorphic
 
 struct ConverterView: View {
     
@@ -33,13 +34,18 @@ struct ConverterView: View {
     
     var body: some View {
         List {
+            
             HStack {
-                TextField("Convert This", value: $valueToConvert, format: .number)
-                    .padding(5)
-                    .background(.background)
-                    .cornerRadius(10)
-                    .overlay(RoundedRectangle(cornerRadius: 10.0).strokeBorder(Color.black, style: StrokeStyle(lineWidth: 1.0))
-                    )
+                ZStack {
+                    TextField("Convert This", value: $valueToConvert, format: .number)
+                        .padding()
+                }
+                .background(
+                    RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(Color.Neumorphic.main)
+                    .softOuterShadow()
+                    .frame(height:35)
+                )
                     .onSubmit {
                         updateValue()
                     }
@@ -79,6 +85,8 @@ struct ConverterView: View {
                 
                 Text(" = ")
                 Text(convertedValue, format: .number.notation(.scientific).precision(.fractionLength(3)))
+                    .bold()
+                    .font(.headline)
                 Menu {
                     ForEach(Unit.UnitsArray.filter({$0.category == selectedUnit1.category}), id: \.name) { unit in
                         Button(action: {
@@ -92,25 +100,25 @@ struct ConverterView: View {
                     Text(selectedUnit2.abbreviation)
                 }
                 
+                Button(action: {
+                    addItem()
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                }
+                .softButtonStyle(Circle(), padding: 10, textColor: .green, pressedEffect: .hard)
             }
             .padding(15)
-            .background(.thinMaterial)
-            .cornerRadius(7) /// make the background rounded
-            .overlay( /// apply a rounded border
-                RoundedRectangle(cornerRadius: 7)
-                    .stroke(.blue, lineWidth: 2)
-            )
+            .background(            RoundedRectangle(cornerRadius: 20).fill(Color.Neumorphic.main).softOuterShadow()
+)
+//            .cornerRadius(7) /// make the background rounded
+//            .overlay( /// apply a rounded border
+//                RoundedRectangle(cornerRadius: 7)
+//                    .stroke(.blue, lineWidth: 2)
+//            )
             .listRowSeparator(.hidden)
+            .padding(.bottom, 20)
             
-            Button(action: {
-                addItem()
-            }, label: {
-                Text("Save conversion")
-            })
-            .buttonStyle(.borderedProminent)
-            .tint(.green)
-            .centerModifier()
-            
+                        
             if !items.isEmpty {
                 Section(" ") {
                     ForEach(items) { item in
@@ -128,6 +136,9 @@ struct ConverterView: View {
             }
             
         }
+        .listRowSeparator(.hidden)
+        .background(Color.Neumorphic.main)
+        .scrollContentBackground(.hidden)
         .onAppear(perform: {
             updateValue()
         })

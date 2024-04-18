@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B15486FA2BD14D03004C8237 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = B15486F92BD14D03004C8237 /* Neumorphic */; };
 		B182245F2BCFEFB40001BDEF /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B182245E2BCFEFB40001BDEF /* Prefix.swift */; };
-		B18224622BCFF64E0001BDEF /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = B18224612BCFF64E0001BDEF /* LaunchAtLogin */; };
 		B1BB63772BCED63100309584 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB63762BCED63100309584 /* MainViewModel.swift */; };
 		B1BB637B2BCEF08400309584 /* SimpleNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB637A2BCEF08400309584 /* SimpleNotesView.swift */; };
 		B1BB637D2BCEF4A900309584 /* NoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB637C2BCEF4A900309584 /* NoteItem.swift */; };
@@ -22,6 +22,7 @@
 		B1C03C822BCE77E000FEB061 /* ConversionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C03C812BCE77E000FEB061 /* ConversionItem.swift */; };
 		B1D40EAF2BCFB5D1007ECE0E /* CenterModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D40EAE2BCFB5D1007ECE0E /* CenterModifier.swift */; };
 		B1D40EB42BCFBA56007ECE0E /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B1D40EB32BCFBA56007ECE0E /* LaTeXSwiftUI */; };
+		B1DA75532BD00C0B003D75DA /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = B1DA75522BD00C0B003D75DA /* LaunchAtLogin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +48,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B18224622BCFF64E0001BDEF /* LaunchAtLogin in Frameworks */,
+				B1DA75532BD00C0B003D75DA /* LaunchAtLogin in Frameworks */,
 				B1D40EB42BCFBA56007ECE0E /* LaTeXSwiftUI in Frameworks */,
+				B15486FA2BD14D03004C8237 /* Neumorphic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +136,8 @@
 			name = planeteConverter;
 			packageProductDependencies = (
 				B1D40EB32BCFBA56007ECE0E /* LaTeXSwiftUI */,
-				B18224612BCFF64E0001BDEF /* LaunchAtLogin */,
+				B1DA75522BD00C0B003D75DA /* LaunchAtLogin */,
+				B15486F92BD14D03004C8237 /* Neumorphic */,
 			);
 			productName = planeteConverter;
 			productReference = B1C03C672BCE728D00FEB061 /* planeteConverter.app */;
@@ -167,6 +170,7 @@
 			packageReferences = (
 				B1D40EB22BCFBA56007ECE0E /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */,
 				B18224602BCFF64E0001BDEF /* XCRemoteSwiftPackageReference "LaunchAtLogin-modern" */,
+				B15486F82BD14D03004C8237 /* XCRemoteSwiftPackageReference "neumorphic" */,
 			);
 			productRefGroup = B1C03C682BCE728D00FEB061 /* Products */;
 			projectDirPath = "";
@@ -415,6 +419,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B15486F82BD14D03004C8237 /* XCRemoteSwiftPackageReference "neumorphic" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/costachung/neumorphic";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		B18224602BCFF64E0001BDEF /* XCRemoteSwiftPackageReference "LaunchAtLogin-modern" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-modern";
@@ -434,15 +446,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B18224612BCFF64E0001BDEF /* LaunchAtLogin */ = {
+		B15486F92BD14D03004C8237 /* Neumorphic */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B18224602BCFF64E0001BDEF /* XCRemoteSwiftPackageReference "LaunchAtLogin-modern" */;
-			productName = LaunchAtLogin;
+			package = B15486F82BD14D03004C8237 /* XCRemoteSwiftPackageReference "neumorphic" */;
+			productName = Neumorphic;
 		};
 		B1D40EB32BCFBA56007ECE0E /* LaTeXSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B1D40EB22BCFBA56007ECE0E /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */;
 			productName = LaTeXSwiftUI;
+		};
+		B1DA75522BD00C0B003D75DA /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B18224602BCFF64E0001BDEF /* XCRemoteSwiftPackageReference "LaunchAtLogin-modern" */;
+			productName = LaunchAtLogin;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
