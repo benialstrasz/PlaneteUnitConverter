@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import LaunchAtLogin
+import Neumorphic
 
 struct MainContentView: View {
     
@@ -56,6 +57,8 @@ struct MainContentView: View {
                 } label: {
                     Image(systemName: "power")
                 }
+                .buttonStyle(.borderedProminent)
+                .tint(.red)
                 .keyboardShortcut("q")
             }
             .padding(.horizontal, 10)
@@ -63,6 +66,9 @@ struct MainContentView: View {
         }
         .frame(width: 500)
         .padding(3)
+        .background(
+            Color.Neumorphic.main
+        )
     }
     
 }

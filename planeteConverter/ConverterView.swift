@@ -39,16 +39,19 @@ struct ConverterView: View {
                 ZStack {
                     TextField("Convert This", value: $valueToConvert, format: .number)
                         .padding()
+                        .onChange(of: valueToConvert) { oldValue, newValue in
+                            updateValue()
+                        }
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(Color.Neumorphic.main)
-                    .softOuterShadow()
-                    .frame(height:35)
+                        .foregroundColor(Color.Neumorphic.main)
+                        .softOuterShadow()
+                        .frame(height:35)
                 )
-                    .onSubmit {
-                        updateValue()
-                    }
+                .onSubmit {
+                    updateValue()
+                }
                 Menu {
                     Button(action: {
                         selectedPrefix1 = Prefix.none
@@ -56,7 +59,7 @@ struct ConverterView: View {
                     }, label: {
                         Text("     ")
                     })
-
+                    
                     ForEach(Prefix.PrefixArray, id: \.id) { prefix in
                         Button(action: {
                             selectedPrefix1 = prefix
@@ -68,14 +71,14 @@ struct ConverterView: View {
                 } label: {
                     Text(selectedPrefix1.abbreviation)
                 }
-
+                
                 Menu {
                     ForEach(Unit.UnitsArray.filter({$0.category != .other}), id: \.id) { unit in
                         Button(action: {
                             selectedUnit1 = unit
                             updateValue()
                         }, label: {
-//                            LaTeX(unit.LaTeXunit ?? "")
+                            //                            LaTeX(unit.LaTeXunit ?? "")
                             Text("\(unit.abbreviation) (\(unit.name))")
                         })
                     }
@@ -87,6 +90,15 @@ struct ConverterView: View {
                 Text(convertedValue, format: .number.notation(.scientific).precision(.fractionLength(3)))
                     .bold()
                     .font(.headline)
+                    .contextMenu(menuItems: {
+                        Button {
+                            let pasteboard = NSPasteboard.general
+                            pasteboard.declareTypes([.string], owner: nil)
+                            pasteboard.setString(String(convertedValue), forType: .string)
+                        } label: {
+                            Text("Copy value")
+                        }
+                    })
                 Menu {
                     ForEach(Unit.UnitsArray.filter({$0.category == selectedUnit1.category}), id: \.name) { unit in
                         Button(action: {
@@ -108,22 +120,20 @@ struct ConverterView: View {
                 .softButtonStyle(Circle(), padding: 10, textColor: .green, pressedEffect: .hard)
             }
             .padding(15)
-            .background(            RoundedRectangle(cornerRadius: 20).fill(Color.Neumorphic.main).softOuterShadow()
-)
-//            .cornerRadius(7) /// make the background rounded
-//            .overlay( /// apply a rounded border
-//                RoundedRectangle(cornerRadius: 7)
-//                    .stroke(.blue, lineWidth: 2)
-//            )
+            .background(
+                RoundedRectangle(cornerRadius: 20).fill(Color.Neumorphic.main).softOuterShadow()
+            )
             .listRowSeparator(.hidden)
-            .padding(.bottom, 20)
-            
+            .padding(.vertical)
+            //            .padding(.bottom, 5)
                         
             if !items.isEmpty {
-                Section(" ") {
+                Section("Saved conversions") {
                     ForEach(items) { item in
-                        //                    Text("\(item.value1) \(item.unit1.abbreviation) = \(item.value2) \(item.unit2.abbreviation)")
-                        LaTeX("\(item.value1) $\(item.prefix1.name) \(item.unit1.LaTeXunit!)$ = \(item.value2) $\(item.unit2.LaTeXunit!)$")
+                        let scientificValue2 = String(item.value2.formatted(.number.notation(.scientific).precision(.fractionLength(3))))
+                        
+                        LaTeX("\(item.value1) \\, \\mathrm{\(item.prefix1.abbreviation)} \(item.unit1.LaTeXunit!) = \(scientificValue2) \\, \\, \(item.unit2.LaTeXunit!)")
+                            .parsingMode(.all)
                             .centerModifier()
                             .swipeActions {
                                 Button("delete") {
@@ -131,14 +141,24 @@ struct ConverterView: View {
                                 }
                                 .tint(.red)
                             }
+                            .contextMenu(menuItems: {
+                                Button {
+                                    let pasteboard = NSPasteboard.general
+                                    pasteboard.declareTypes([.string], owner: nil)
+                                    pasteboard.setString(String(item.value2), forType: .string)
+                                } label: {
+                                    Text("Copy value")
+                                }
+                            })
+
                     }
                 }
             }
             
         }
-        .listRowSeparator(.hidden)
+//        .listRowSeparator(.hidden)
         .background(Color.Neumorphic.main)
-        .scrollContentBackground(.hidden)
+        //        .scrollContentBackground(.hidden)
         .onAppear(perform: {
             updateValue()
         })
@@ -163,12 +183,12 @@ struct ConverterView: View {
         }
     }
     
-//    func delete(_ indexSet: IndexSet) {
-//        for i in indexSet {
-//            let item = items[i]
-//            modelContext.delete(item)
-//        }
-//    }
+    //    func delete(_ indexSet: IndexSet) {
+    //        for i in indexSet {
+    //            let item = items[i]
+    //            modelContext.delete(item)
+    //        }
+    //    }
     
 }
 

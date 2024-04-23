@@ -44,11 +44,13 @@ struct planeteConverterApp: App {
         //            ContentView()
         //        }
         //        .modelContainer(sharedModelContainer)
-        
-        MenuBarExtra("Planete Converter", systemImage: "tropicalstorm.circle") {
+        MenuBarExtra {
             MainContentView()
 //                .modelContainer(sharedNotesModelContainer)
                 .modelContainer(sharedConversionModelContainer)
+        } label: {
+            Image("P2")
+                .imageScale(.large)
         }
         .menuBarExtraStyle(.window)
 //        .modelContainer(sharedNotesModelContainer) // ENABLE FOR SwiftData
