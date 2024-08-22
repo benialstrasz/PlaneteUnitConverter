@@ -44,6 +44,7 @@ final public class Unit: Identifiable, Codable {
 
 extension Unit: Sequence {
     static let gramm = Unit(name: "gramm", abbreviation: "g", value: (1.0), category: Unit.category.mass, LaTeXunit: "g")
+    static let kilogramm = Unit(name: "kilogramm", abbreviation: "kg", value: 1000.0 * gramm.value, category: Unit.category.mass, LaTeXunit: "kg")
     static let centimeter = Unit(name: "centimeter", abbreviation: "cm", value: (1.0), category: Unit.category.length, LaTeXunit: "cm")
     static let second = Unit(name: "second", abbreviation: "s", value: (1.0), category: Unit.category.time, LaTeXunit: "s")
     static let Kelvin = Unit(name: "Kelvin", abbreviation: "K", value: (1.0), category: Unit.category.temperature, LaTeXunit: "K")
@@ -51,7 +52,7 @@ extension Unit: Sequence {
     static let erg = Unit(name: "erg", abbreviation: "erg", value: (pow(centimeter.value, 2) * gramm.value / pow(second.value, 2)), category: Unit.category.energy, LaTeXunit: "erg")
     static let Joule = Unit(name: "Joule", abbreviation: "J", value: 1E7 * erg.value, category: .energy, LaTeXunit: "J")
     static let ergPerS = Unit(name: "erg per second", abbreviation: "erg/s", value: erg.value / second.value, category: .luminosity, LaTeXunit: "\\frac{erg}{s}")
-    
+    static let watt = Unit(name: "Watt", abbreviation: "W", value: Joule.value / second.value, category: .luminosity, LaTeXunit: "W")
 
     static let cm2 = Unit(name: "square centimeter", abbreviation: "cm2", value: (pow(centimeter.value, 2)), category: Unit.category.area, LaTeXunit: "cm^2")
     static let cm3 = Unit(name: "cubic centimeter", abbreviation: "cm3", value: pow(centimeter.value, 3), category: Unit.category.volume, LaTeXunit: "cm^2")
@@ -100,9 +101,8 @@ extension Unit: Sequence {
     static let GMearth = Unit(name: "earthGravitationalParameter", abbreviation: "GM⊕", value: 3.986004e+20 * pow(centimeter.value, 3) / pow(second.value, 2), category: Unit.category.other, LaTeXunit: "GM_E")
     static let Mearth = Unit(name: "earthMass", abbreviation: "M⊕", value: GMearth.value / G.value, category: Unit.category.mass, LaTeXunit: "{M_\\oplus}")
 
-    
     static var UnitsArray: [Unit] {
-        return [gramm, centimeter, second, Kelvin, dyne, erg, Joule, ergPerS, cm2, cm3, m, km, ms, kms, Bar, Pa, pi, π, pi4, G, c, eV, kb, hP, uma, cte_a, NAvo, Rgp, a0, cfrad, sigmaPlanck, day, an, au, ly, parsec, Jy, mJy, Rsun, Rj, Rearth, Lsun, LJ, GMsun, Msun, GMj, Mj, GMearth, Mearth]
+        return [gramm, centimeter, second, Kelvin, dyne, erg, Joule, ergPerS, watt, cm2, cm3, m, km, ms, kms, Bar, Pa, pi, π, pi4, G, c, eV, kb, hP, uma, cte_a, NAvo, Rgp, a0, cfrad, sigmaPlanck, day, an, au, ly, parsec, Jy, mJy, Rsun, Rj, Rearth, Lsun, LJ, GMsun, Msun, GMj, Mj, GMearth, Mearth]
     }
     
     // Implement the makeIterator() method required by Sequence protocol
