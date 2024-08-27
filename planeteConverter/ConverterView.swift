@@ -73,14 +73,18 @@ struct ConverterView: View {
                 }
                 
                 Menu {
-                    ForEach(Unit.UnitsArray.filter({$0.category != .other}), id: \.id) { unit in
-                        Button(action: {
-                            selectedUnit1 = unit
-                            updateValue()
-                        }, label: {
-                            //                            LaTeX(unit.LaTeXunit ?? "")
-                            Text("\(unit.abbreviation) (\(unit.name))")
-                        })
+                    ForEach(Unit.Category.allCases) { cate in
+                        Section("\(cate.id)") {
+                            ForEach(Unit.UnitsArray.filter({ ($0.category == cate) && ($0.category != .other)}), id: \.id) { unit in
+                                Button(action: {
+                                    selectedUnit1 = unit
+                                    updateValue()
+                                }, label: {
+                                    //                            LaTeX(unit.LaTeXunit ?? "")
+                                    Text("\(unit.abbreviation) (\(unit.name))")
+                                })
+                            }
+                        }
                     }
                 } label: {
                     Text(selectedUnit1.abbreviation)
@@ -165,9 +169,18 @@ struct ConverterView: View {
     }
     
     func updateValue() {
-        self.convertedValue = valueToConvert * selectedPrefix1.value * (selectedUnit1.value / selectedUnit2.value)
+        // First, check if the selected units have custom conversion logic
+        if let conversionFunction = selectedUnit1.conversionFunction {
+            // Use the custom conversion function for non-linear conversions
+            self.convertedValue = conversionFunction(valueToConvert * selectedPrefix1.value, selectedUnit2)
+        } else if let conversionFunction = selectedUnit2.conversionFunction {
+            // In case the target unit has a conversion logic from SI unit
+            self.convertedValue = conversionFunction(valueToConvert * selectedPrefix1.value / selectedUnit1.value, selectedUnit2)
+        } else {
+            // Default linear conversion for other units
+            self.convertedValue = valueToConvert * selectedPrefix1.value * (selectedUnit1.value / selectedUnit2.value)
+        }
     }
-    
     private func addItem() {
         withAnimation {
             let newItem = ConversionItem(timestamp: Date(), value1: valueToConvert, prefix1: selectedPrefix1, unit1: selectedUnit1, value2: convertedValue, unit2: selectedUnit2)
