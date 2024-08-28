@@ -8,7 +8,7 @@
 import Foundation
 
 final public class Unit: Identifiable, Codable, Equatable {
-    // Properties
+
     var name: String
     var abbreviation: String
     var value: Double
@@ -16,9 +16,8 @@ final public class Unit: Identifiable, Codable, Equatable {
     var SIvalue: Double?
     var SIunits: String?
     var LaTeXunit: String?
-    var conversionFunction: ((Double, Unit) -> Double)? // This will be excluded from Codable
+    var conversionFunction: ((Double, Unit) -> Double)? // Not (en)codable.
 
-    // Enum for different categories of units
     enum Category: String, Codable, Identifiable, CaseIterable {
         case mass
         case length
@@ -40,7 +39,7 @@ final public class Unit: Identifiable, Codable, Equatable {
         }
     }
 
-    // CodingKeys to exclude conversionFunction from being encoded/decoded
+    // exclude conversionFunction from being encoded/decoded, because it's not encodable
     enum CodingKeys: String, CodingKey {
         case name
         case abbreviation
@@ -126,7 +125,7 @@ final public class Unit: Identifiable, Codable, Equatable {
         try container.encodeIfPresent(LaTeXunit, forKey: .LaTeXunit)
     }
 
-    // Equatable conformance
+    // Equatable protocol
     public static func == (lhs: Unit, rhs: Unit) -> Bool {
         return lhs.name == rhs.name
     }
@@ -149,7 +148,18 @@ extension Unit: Sequence {
     static let Fahrenheit = Unit(name: "Fahrenheit", abbreviation: "F", value: ((Kelvin.value - 32)/1.8) + 273.15, category: Unit.Category.temperature, LaTeXunit: "F")
 
     static let cm2 = Unit(name: "square centimeter", abbreviation: "cm2", value: (pow(centimeter.value, 2)), category: Unit.Category.area, LaTeXunit: "cm^2")
-    static let cm3 = Unit(name: "cubic centimeter", abbreviation: "cm3", value: pow(centimeter.value, 3), category: Unit.Category.volume, LaTeXunit: "cm^2")
+    static let m2 = Unit(name: "square meter", abbreviation: "m2", value: (pow(m.value, 2)), category: Unit.Category.area, LaTeXunit: "m^2")
+    static let km2 = Unit(name: "square kilometer", abbreviation: "km2", value: (pow(km.value, 2)), category: Unit.Category.area, LaTeXunit: "km^2")
+    static let earth_surface = Unit(name: "earth_surface", abbreviation: "earth surf.", value: (510072000 * pow(km.value, 2)), category: Unit.Category.area, LaTeXunit: "A_\\oplus") //Source: Wikipedia
+    
+    static let cm3 = Unit(name: "cubic centimeter", abbreviation: "cm3", value: pow(centimeter.value, 3), category: Unit.Category.volume, LaTeXunit: "cm^3")
+    static let m3 = Unit(name: "cubic meter", abbreviation: "m3", value: pow(m.value, 3), category: Unit.Category.volume, LaTeXunit: "m^3")
+    static let km3 = Unit(name: "cubic kilometer", abbreviation: "km3", value: pow(km.value, 3), category: Unit.Category.volume, LaTeXunit: "km^3")
+    static let earthVolume = Unit(name: "Earth volume", abbreviation: "E3", value: 1.08321e+12 * pow(km.value, 3), category: Unit.Category.volume, LaTeXunit: "V_\\oplus") // Source: Wikipedia
+    static let jupiterVolume = Unit(name: "Jupiter volume", abbreviation: "J3", value: 143128e+10 * pow(km.value, 3), category: Unit.Category.volume, LaTeXunit: "V_J") // Source: NASA fact sheet
+    static let sunVolume = Unit(name: "Solar volume", abbreviation: "S3", value: 1412000e+12 * pow(km.value, 3), category: Unit.Category.volume, LaTeXunit: "V_\\odot") // Source: NASA fact sheet
+
+    
     static let m = Unit(name: "meter", abbreviation: "m", value: (100.0 * centimeter.value), category: Unit.Category.length, LaTeXunit: "m")
     static let km = Unit(name: "kilometer", abbreviation: "km", value: (1000.0 * m.value), category: Unit.Category.length, LaTeXunit: "km")
     static let ms = Unit(name: "meter per second", abbreviation: "m/s", value: m.value / second.value, category: Unit.Category.velocity, LaTeXunit: "\\frac{m}{s}")
@@ -160,8 +170,9 @@ extension Unit: Sequence {
     static let pi = Unit(name: "Pi", abbreviation: "π", value: Double.pi, category: Unit.Category.other, LaTeXunit: "\\pi")
     static let π = Unit(name: "Pi", abbreviation: "π", value: Double.pi, category: Unit.Category.other, LaTeXunit: "\\pi")
     static let pi4 = Unit(name: "4*Pi", abbreviation: "4π", value: 4 * Double.pi, category: Unit.Category.other, LaTeXunit: "4\\pi")
-    static let G = Unit(name: "Gravitational constant", abbreviation: "G", value: (6.67408e-08 * dyne.value * cm2.value / pow(gramm.value, 2)), category: Unit.Category.constant, LaTeXunit: "G")
-    static let c = Unit(name: "Speed of light", abbreviation: "c", value: 2.99792458e+10 * centimeter.value / second.value, category: Unit.Category.velocity, LaTeXunit: "c")
+    static let G = Unit(name: "Gravitational constant", abbreviation: "G", value: (6.67408e-08 * dyne.value * cm2.value / pow(gramm.value, 2)), category: .constant, LaTeXunit: "G")
+    static let G_cgs = Unit(name: "Gravitational constant (cgs)", abbreviation: "G", value: 6.67408e-08 * dyne.value * pow(centimeter.value, 2) / pow(gramm.value, 2), category: .constant, LaTeXunit: "G")
+    static let c = Unit(name: "Speed of light", abbreviation: "c", value: 2.99792458e+10 * centimeter.value / second.value, category: .velocity, LaTeXunit: "c")
     
     static let eV = Unit(name: "electron Volt", abbreviation: "eV", value: 1.6021766208e-12 * erg.value, category: Unit.Category.energy, LaTeXunit: "eV")
     static let kb = Unit(name: "Boltzmann constant", abbreviation: "kB", value: 1.38064852e-16 * erg.value / Kelvin.value, category: Unit.Category.energy, LaTeXunit: "k_B")
@@ -195,12 +206,12 @@ extension Unit: Sequence {
     static let GMearth = Unit(name: "earthGravitationalParameter", abbreviation: "GM⊕", value: 3.986004e+20 * pow(centimeter.value, 3) / pow(second.value, 2), category: Unit.Category.other, LaTeXunit: "GM_E")
     static let Mearth = Unit(name: "earthMass", abbreviation: "M⊕", value: GMearth.value / G.value, category: Unit.Category.mass, LaTeXunit: "{M_\\oplus}")
 
-    static let R_Earth_per_yr = Unit(name: "R_EarthPerYear", abbreviation: "RE/y", value: Rearth.value/an.value, category: Unit.Category.velocity, LaTeXunit: "R_E/yr")
+    static let R_Earth_per_yr = Unit(name: "Earth radius / year", abbreviation: "RE/y", value: Rearth.value/an.value, category: Unit.Category.velocity, LaTeXunit: "R_E/yr")
 
-    static let UnitsArray: [Unit] = [gramm, kilogramm, centimeter, second, Kelvin, Celsius, Fahrenheit, dyne, newton, erg, Joule, ergPerS, watt, cm2, cm3, m, km, ms, R_Earth_per_yr, kms, Bar, Pa, pi, π, pi4, G, c, eV, kb, hP, uma, cte_a, NAvo, Rgp, a0, cfrad, sigmaPlanck, day, an, au, ly, parsec, Jy, mJy, Rsun, Rj, Rearth, Lsun, LJ, GMsun, Msun, GMj, Mj, GMearth, Mearth]
+    static let UnitsArray: [Unit] = [gramm, kilogramm, centimeter, second, Kelvin, Celsius, Fahrenheit, dyne, newton, erg, Joule, ergPerS, watt, cm2, m2, km2, earth_surface, cm3, m3, km3, earthVolume, jupiterVolume, sunVolume, m, km, ms, R_Earth_per_yr, kms, Bar, Pa, pi, π, pi4, G, c, eV, kb, hP, uma, cte_a, NAvo, Rgp, a0, cfrad, sigmaPlanck, day, an, au, ly, parsec, Jy, mJy, Rsun, Rj, Rearth, Lsun, LJ, GMsun, Msun, GMj, Mj, GMearth, Mearth]
 
     
-    // Implement the makeIterator() method required by Sequence protocol
+    // makeIterator() method required by Sequence protocol
     public func makeIterator() -> IndexingIterator<[Unit]> {
         return Unit.UnitsArray.makeIterator()
     }
@@ -215,4 +226,16 @@ extension Unit: Sequence {
         return (self.value / siValue) * targetSiValue
     }
     
+    // Function to convert a unit value from one system to another
+    func convertToSI() -> Double? {
+        guard self.category == .constant else { return nil }
+
+        switch self.name {
+        case "Gravitational constant (cgs)":
+            let G_SI_value = self.value * (pow(Unit.centimeter.value / self.value, 2) * (Unit.dyne.value / Unit.newton.value) * pow(Unit.kilogramm.value / Unit.gramm.value, 2))
+            return G_SI_value
+        default:
+            return nil
+        }
+    }
 }

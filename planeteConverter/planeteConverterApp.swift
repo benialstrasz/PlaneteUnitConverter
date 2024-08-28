@@ -49,8 +49,8 @@ struct planeteConverterApp: App {
 //                .modelContainer(sharedNotesModelContainer)
                 .modelContainer(sharedConversionModelContainer)
         } label: {
-            Image("P2")
-                .imageScale(.large)
+            Image("PC16")
+//                .imageScale(.large)
         }
         .menuBarExtraStyle(.window)
 //        .modelContainer(sharedNotesModelContainer) // ENABLE FOR SwiftData
