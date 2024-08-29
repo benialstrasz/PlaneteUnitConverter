@@ -136,7 +136,7 @@ struct ConverterView: View {
                     ForEach(items) { item in
                         let scientificValue2 = String(item.value2.formatted(.number.notation(.scientific).precision(.fractionLength(3))))
                         
-                        LaTeX("\(item.value1) \\, \\mathrm{\(item.prefix1.abbreviation)} \(item.unit1.LaTeXunit!) = \(scientificValue2) \\, \\, \(item.unit2.LaTeXunit!)")
+                        LaTeX("\(item.value1) \\, \\mathrm{\(item.prefix1.abbreviation)} \(item.unit1.LaTeXunit!) = \\text{\(scientificValue2.lowercased())} \\, \\, \(item.unit2.LaTeXunit!)")
                             .parsingMode(.all)
                             .centerModifier()
                             .swipeActions {
