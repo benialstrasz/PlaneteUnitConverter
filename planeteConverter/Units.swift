@@ -31,6 +31,7 @@ final public class Unit: Identifiable, Codable, Equatable {
         case constant
         case area
         case volume
+        case accretionRate
         case fluxDensity
         case other
 
@@ -164,6 +165,8 @@ extension Unit: Sequence {
     static let km = Unit(name: "kilometer", abbreviation: "km", value: (1000.0 * m.value), category: Unit.Category.length, LaTeXunit: "km")
     static let ms = Unit(name: "meter per second", abbreviation: "m/s", value: m.value / second.value, category: Unit.Category.velocity, LaTeXunit: "\\frac{m}{s}")
     static let kms = Unit(name: "kilometer per second", abbreviation: "km/s", value: (km.value / second.value), category: Unit.Category.velocity, LaTeXunit: "\\frac{km}{s}")
+    
+    static let barye = Unit(name: "Barye", abbreviation: "Ba", value: (gramm.value / centimeter.value / pow(second.value, 2)), category: Unit.Category.pressure, LaTeXunit: "Ba")
     static let Bar = Unit(name: "Bar", abbreviation: "Bar", value: (1E06 * gramm.value / centimeter.value / pow(second.value, 2)), category: Unit.Category.pressure, LaTeXunit: "Bar")
     static let Pa = Unit(name: "Pascale", abbreviation: "Pa", value: (10.0 * dyne.value / cm2.value), category: Unit.Category.pressure, LaTeXunit: "Pa")
     
@@ -180,7 +183,7 @@ extension Unit: Sequence {
     static let uma = Unit(name: "atomic mass unit", abbreviation: "u", value: 1.660539040e-24 * gramm.value, category: Unit.Category.mass, LaTeXunit: "u")
     static let cte_a = Unit(name: "radiation constant A", abbreviation: "A", value: 7.57e-15 * erg.value / cm3.value / pow(Kelvin.value, 4), category: Unit.Category.other, LaTeXunit: "A")
     static let NAvo = Unit(name: "Avogadro number", abbreviation: "Nₐ", value: 6.022140857e+23, category: Unit.Category.other, LaTeXunit: "N_a")
-    static let Rgp = Unit(name: "gas constant", abbreviation: "R", value: 8.3144598e+07 * erg.value / Kelvin.value / gramm.value, category: Unit.Category.energy, LaTeXunit: "R")
+    static let Rgp = Unit(name: "gas constant", abbreviation: "R", value: 8.3144598e+07 * erg.value / Kelvin.value / gramm.value, category: Unit.Category.constant, LaTeXunit: "R")
     static let a0 = Unit(name: "Bohr Radius", abbreviation: "a₀", value: 0.529e-8 * centimeter.value, category: Unit.Category.length, LaTeXunit: "a_0")
     static let cfrad = Unit(name: "cfrad", abbreviation: "cfrad", value: -3.0 / (16.0 * Double.pi * cte_a.value * c.value), category: Unit.Category.other, LaTeXunit: "c_{frad}")
     static let sigmaPlanck = Unit(name: "σ Planck", abbreviation: "σ", value: cte_a.value * c.value / 4.0, category: Unit.Category.other, SIvalue: 5.670374419E-8, SIunits: "W / (m2 x K4", LaTeXunit: "\\sigma")
@@ -206,9 +209,17 @@ extension Unit: Sequence {
     static let GMearth = Unit(name: "earthGravitationalParameter", abbreviation: "GM⊕", value: 3.986004e+20 * pow(centimeter.value, 3) / pow(second.value, 2), category: Unit.Category.other, LaTeXunit: "GM_E")
     static let Mearth = Unit(name: "earthMass", abbreviation: "M⊕", value: GMearth.value / G.value, category: Unit.Category.mass, LaTeXunit: "{M_\\oplus}")
 
-    static let R_Earth_per_yr = Unit(name: "Earth radius / year", abbreviation: "RE/y", value: Rearth.value/an.value, category: Unit.Category.velocity, LaTeXunit: "R_E/yr")
+    static let R_Earth_per_yr = Unit(name: "Earth radius / year", abbreviation: "RE/yr", value: Rearth.value/an.value, category: Unit.Category.velocity, LaTeXunit: "R_E/yr")
+    static let R_Jup_per_yr = Unit(name: "Jupiter radius / year", abbreviation: "RJ/yr", value: Rj.value/an.value, category: Unit.Category.velocity, LaTeXunit: "R_J/yr")
 
-    static let UnitsArray: [Unit] = [gramm, kilogramm, centimeter, second, Kelvin, Celsius, Fahrenheit, dyne, newton, erg, Joule, ergPerS, watt, cm2, m2, km2, earth_surface, cm3, m3, km3, earthVolume, jupiterVolume, sunVolume, m, km, ms, R_Earth_per_yr, kms, Bar, Pa, pi, π, pi4, G, c, eV, kb, hP, uma, cte_a, NAvo, Rgp, a0, cfrad, sigmaPlanck, day, an, au, ly, parsec, Jy, mJy, Rsun, Rj, Rearth, Lsun, LJ, GMsun, Msun, GMj, Mj, GMearth, Mearth]
+    static let Me_per_yr = Unit(name: "Earth mass / year", abbreviation: "Me/yr", value: Mearth.value/an.value, category: Unit.Category.accretionRate, LaTeXunit: "M_\\oplus/yr")
+    static let Me_per_Myr = Unit(name: "Earth mass / Myear", abbreviation: "Me/Myr", value: Mearth.value/(1000000*an.value), category: Unit.Category.accretionRate, LaTeXunit: "M_\\oplus/Myr")
+    static let MJ_per_yr = Unit(name: "Jupiter mass / year", abbreviation: "MJ/yr", value: Mj.value/an.value, category: Unit.Category.accretionRate, LaTeXunit: "M_J/yr")
+    static let MJ_per_Myr = Unit(name: "Jupiter mass / Myear", abbreviation: "MJ/Myr", value: Mj.value/(1000000*an.value), category: Unit.Category.accretionRate, LaTeXunit: "M_J/Myr")
+    static let g_per_sec = Unit(name: "gramm / second", abbreviation: "g/s", value: gramm.value/second.value, category: Unit.Category.accretionRate, LaTeXunit: "g/s")
+
+    
+    static let UnitsArray: [Unit] = [gramm, kilogramm, centimeter, second, Kelvin, Celsius, Fahrenheit, dyne, newton, erg, Joule, ergPerS, watt, cm2, m2, km2, earth_surface, cm3, m3, km3, earthVolume, jupiterVolume, sunVolume, m, km, ms, R_Earth_per_yr, R_Jup_per_yr, kms, Bar, Pa, barye, pi, π, pi4, G, c, eV, kb, hP, uma, cte_a, NAvo, Rgp, a0, cfrad, sigmaPlanck, day, an, au, ly, parsec, Jy, mJy, Rsun, Rj, Rearth, Lsun, LJ, GMsun, Msun, GMj, Mj, GMearth, Mearth, Me_per_yr, Me_per_Myr, MJ_per_yr, MJ_per_Myr, g_per_sec]
 
     
     // makeIterator() method required by Sequence protocol

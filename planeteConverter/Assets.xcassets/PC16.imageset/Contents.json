@@ -3,6 +3,16 @@
     {
       "filename" : "PC16.pdf",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "PC16-white.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {

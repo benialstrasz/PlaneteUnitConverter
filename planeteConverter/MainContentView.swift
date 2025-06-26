@@ -13,6 +13,7 @@ import Neumorphic
 struct MainContentView: View {
     
     @StateObject var mVM = MainViewModel()
+    let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "Unknown"
     
 //    @Environment(\.modelContext) private var modelContext
 //    @Query private var items: [ConversionItem]
@@ -30,7 +31,10 @@ struct MainContentView: View {
             HStack {
                 Text("🪐 made by Beni")
                     .font(.caption2)
-                
+                Text("(v" + currentVersion + ")")
+                    .font(.caption2)
+                    .fontWeight(.ultraLight)
+
                 Spacer()
                 
 //                Button {
