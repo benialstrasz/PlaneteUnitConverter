@@ -8,7 +8,6 @@
 import SwiftUI
 import SwiftData
 import LaTeXSwiftUI
-import Neumorphic
 
 struct ConverterView: View {
     
@@ -36,22 +35,15 @@ struct ConverterView: View {
         List {
             
             HStack {
-                ZStack {
-                    TextField("Convert This", value: $valueToConvert, format: .number)
-                        .padding()
-                        .onChange(of: valueToConvert) { oldValue, newValue in
-                            updateValue()
-                        }
-                }
-                .background(
-                    RoundedRectangle(cornerRadius: 15)
-                        .foregroundColor(Color.Neumorphic.main)
-                        .softOuterShadow()
-                        .frame(height:35)
-                )
-                .onSubmit {
-                    updateValue()
-                }
+                TextField("Convert This", value: $valueToConvert, format: .number)
+                    .textFieldStyle(GlassFieldStyle())
+                    .frame(height: 34)
+                    .onChange(of: valueToConvert) { _, _ in
+                        updateValue()
+                    }
+                    .onSubmit {
+                        updateValue()
+                    }
                 Menu {
                     Button(action: {
                         selectedPrefix1 = Prefix.none
@@ -121,12 +113,10 @@ struct ConverterView: View {
                 }) {
                     Image(systemName: "plus.circle.fill")
                 }
-                .softButtonStyle(Circle(), padding: 10, textColor: .green, pressedEffect: .hard)
+                .buttonStyle(GlassIconButtonStyle(tint: .green))
             }
             .padding(15)
-            .background(
-                RoundedRectangle(cornerRadius: 20).fill(Color.Neumorphic.main).softOuterShadow()
-            )
+//            .glassSurface(cornerRadius: 20, material: .ultraThinMaterial)
             .listRowSeparator(.hidden)
             .padding(.vertical)
             //            .padding(.bottom, 5)
@@ -136,7 +126,7 @@ struct ConverterView: View {
                     ForEach(items) { item in
                         let scientificValue2 = String(item.value2.formatted(.number.notation(.scientific).precision(.fractionLength(3))))
                         
-                        LaTeX("\(item.value1) \\, \\mathrm{\(item.prefix1.abbreviation)} \(item.unit1.LaTeXunit!) = \\text{\(scientificValue2.lowercased())} \\, \\, \(item.unit2.LaTeXunit!)")
+                        LaTeX("\(item.value1) \\, \\mathrm{\(item.prefix1.abbreviation)} \\mathrm{\(item.unit1.LaTeXunit!)} = \\text{\(scientificValue2.lowercased())} \\, \\, \\mathrm{\(item.unit2.LaTeXunit!)}")
                             .parsingMode(.all)
                             .centerModifier()
                             .swipeActions {
@@ -160,9 +150,8 @@ struct ConverterView: View {
             }
             
         }
-//        .listRowSeparator(.hidden)
-        .background(Color.Neumorphic.main)
-        //        .scrollContentBackground(.hidden)
+        .scrollContentBackground(.hidden)
+//        .background(DS.baseGradient)
         .onAppear(perform: {
             updateValue()
         })

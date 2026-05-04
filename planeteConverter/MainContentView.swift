@@ -8,7 +8,6 @@
 import SwiftUI
 import SwiftData
 import LaunchAtLogin
-import Neumorphic
 
 struct MainContentView: View {
     
@@ -19,18 +18,22 @@ struct MainContentView: View {
 //    @Query private var items: [ConversionItem]
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Group {
                 if mVM.showNotes {
                     SimpleNotesView()
-                    //                    .modelContainer(sharedNotesModelContainer)
                         .frame(height: 300)
                 } else {
                     ConverterView()
                 }
             }
             .frame(minHeight: 300)
+//            .padding(8)
+//            .glassSurface(cornerRadius: 22, material: .ultraThinMaterial)
+
             Divider()
+                .padding(.horizontal, 10)
+
             HStack {
                 Text("🪐 made by Beni")
                     .font(.caption2)
@@ -39,25 +42,8 @@ struct MainContentView: View {
                     .fontWeight(.ultraLight)
 
                 Spacer()
-                
-//                Button {
-//                    mVM.showNotes.toggle()
-//                } label: {
-//                    if mVM.showNotes {
-//                        Text("Switch to converter")
-//                    } else {
-//                        Text("Switch to notes")
-//                    }
-//                }
-
 
                 LaunchAtLogin.Toggle()
-                
-//                Button {
-//                    //
-//                } label: {
-//                    Image(systemName: "gearshape.fill")
-//                }
 
                 Button {
                     NSApplication.shared.terminate(nil)
@@ -69,13 +55,14 @@ struct MainContentView: View {
                 .keyboardShortcut("q")
             }
             .padding(.horizontal, 10)
-
+            .padding(.vertical, 8)
         }
         .frame(width: 500)
-        .padding(3)
-        .background(
-            Color.Neumorphic.main
-        )
+        .padding(10)
+        .background {
+            Rectangle().fill(.ultraThinMaterial)
+                .overlay(DS.baseGradient)
+        }
     }
     
 }

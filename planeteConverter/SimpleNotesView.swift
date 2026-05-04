@@ -15,6 +15,9 @@ struct SimpleNotesView: View {
     
     var body: some View {
         TextEditorView(string: $theNote)
+            .padding(12)
+            .glassSurface(cornerRadius: 20, material: Material.ultraThin)
+            .padding(8)
     }
 }
 
@@ -45,6 +48,17 @@ struct TextEditorView: View {
             
             TextEditor(text: $string)
                 .frame(height: textEditorHeight)
+        .scrollContentBackground(.hidden)
+        .padding(8)
+        .background {
+          RoundedRectangle(cornerRadius: DS.smallCornerRadius, style: .continuous)
+            .fill(Material.thin)
+            .overlay {
+              RoundedRectangle(cornerRadius: DS.smallCornerRadius, style: .continuous)
+                .strokeBorder(DS.glassStroke, lineWidth: 1)
+            }
+        }
+                
                
         }
         .onPreferenceChange(ViewHeightKey.self) { textEditorHeight = $0 }
