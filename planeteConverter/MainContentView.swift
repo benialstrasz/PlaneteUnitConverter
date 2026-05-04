@@ -20,13 +20,16 @@ struct MainContentView: View {
 
     var body: some View {
         VStack {
-            if mVM.showNotes {
-                SimpleNotesView()
-//                    .modelContainer(sharedNotesModelContainer)
-                    .frame(height: 300)
-            } else {
-                ConverterView()
+            Group {
+                if mVM.showNotes {
+                    SimpleNotesView()
+                    //                    .modelContainer(sharedNotesModelContainer)
+                        .frame(height: 300)
+                } else {
+                    ConverterView()
+                }
             }
+            .frame(minHeight: 300)
             Divider()
             HStack {
                 Text("🪐 made by Beni")
