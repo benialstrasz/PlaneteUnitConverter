@@ -6,4 +6,7 @@ Package dependencies:
 - LaTeXSwiftUI: https://github.com/colinc86/LaTeXSwiftUI
 - LaunchAtLogin: https://github.com/sindresorhus/LaunchAtLogin-modern
 
-Download for v0.1 available in sidebar.
+Download for v0.4 available in sidebar.
+
+## Screenshot
+![Screenshot of the PlaneteConverter app](PC_screenshot.png)
